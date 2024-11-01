@@ -169,7 +169,7 @@ contract NFTMarketplace is ERC721URIStorage {
         MarketItem[] memory items = new MarketItem[](unsoldItemCount);          // newly created array 'items' of struct 'MarketItem' with size equal to 'unsoldItemCount'
         for (uint256 i = 0; i < itemCount; i++) {                               // iteration over all the nfts
             if (idMarketItem[i + 1].owner == address(this)) {                   // nfts currently existing on marketplace meaning unsold nfts ([i+1] because nft token ids start from 1)
-                uint256 currentId = i + 1; // stores the token id of the current nft being evaluated
+                uint256 currentId = i + 1;                                      // stores the token id of the current nft being evaluated
 
                 MarketItem storage currentItem = idMarketItem[currentId];       // new 'currentItem' variable of struct type 'MarketItem' stored in the mapping allows for direct manipulation
                 items[currentIndex] = currentItem;                              // assigns 'currentItem' data (unsold nfts) to newly created 'items' array which will then be accessible by calling array index starting from 0,1,2,3....and so on
