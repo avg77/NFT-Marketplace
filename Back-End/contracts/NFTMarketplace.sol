@@ -162,15 +162,13 @@ contract NFTMarketplace is ERC721URIStorage {
 
     // role: anyone (public) -> (displays unsold nft data on marketplace)
     function fetchUnsoldNFTs() public view returns (MarketItem[] memory) {
-        uint256 itemCount = _tokenIds.current(); // total count of nfts listed on marketplace (sold and unsold included)
+        uint256 itemCount = _tokenIds.current();                                // total count of nfts listed on marketplace (sold and unsold included)
         uint256 unsoldItemCount = _tokenIds.current() - _itemsSold.current();
-        uint currentIndex = 0; // to access newly created array below
+        uint currentIndex = 0;                                                  // to access newly created array below
 
-        MarketItem[] memory items = new MarketItem[](unsoldItemCount); // newly created array 'items' of struct 'MarketItem' with size equal to 'unsoldItemCount'
-        for (uint256 i = 0; i < itemCount; i++) {
-            // iteration over all the nfts
-            if (idMarketItem[i + 1].owner == address(this)) {
-                // nfts currently existing on marketplace meaning unsold nfts ([i+1] because nft token ids start from 1)
+        MarketItem[] memory items = new MarketItem[](unsoldItemCount);          // newly created array 'items' of struct 'MarketItem' with size equal to 'unsoldItemCount'
+        for (uint256 i = 0; i < itemCount; i++) {                               // iteration over all the nfts
+            if (idMarketItem[i + 1].owner == address(this)) {                   // nfts currently existing on marketplace meaning unsold nfts ([i+1] because nft token ids start from 1)
                 uint256 currentId = i + 1; // stores the token id of the current nft being evaluated
 
                 MarketItem storage currentItem = idMarketItem[currentId];       // new 'currentItem' variable of struct type 'MarketItem' stored in the mapping allows for direct manipulation
@@ -184,7 +182,7 @@ contract NFTMarketplace is ERC721URIStorage {
     // role: nft owner -> (displays nfts owned by the nft owner)
     function fetchOwnedNFTs() public view returns (MarketItem[] memory) {
         uint256 totalCount = _tokenIds.current();
-        uint256 itemCount = 0; // for keeping track of number of nfts owned by the nft owner
+        uint256 itemCount = 0;    // for keeping track of number of nfts owned by the nft owner
         uint256 currentIndex = 0;
 
         for (uint256 i = 0; i < totalCount; i++) {
