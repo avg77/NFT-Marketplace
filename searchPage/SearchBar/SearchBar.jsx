@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Style from "./searchBar.module.css"
+import Style from "./SearchBar.module.css"
 import { BsSearch, BsArrowRight } from "react-icons/bs";
 
 const searchBar = ({onHandleSearch, onClearSearch}) => {
