@@ -29,11 +29,18 @@ const Home = () => {
     const [nftsCopy, setNftsCopy] = useState([])
 
     useEffect(() => {
-      fetchUnsoldNFTs().then((item) => {
-        setNfts(item.reverse())
-        setNftsCopy(item)
-      })
-    }, [])
+      fetchUnsoldNFTs()
+        .then((items) => {
+          if (items && items.length > 0) {
+            setNfts(items.reverse());
+            setNftsCopy(items);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching unsold NFTs:", error);
+        });
+    }, []);
+    
 
   return (
     <div className={Style.homePage}>
